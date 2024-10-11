@@ -1948,14 +1948,24 @@
          <field name = "phi_state" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Phi value from INS</field>
          <field name = "psi_state" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Psi value from INS</field>
          <field name = "ailerons_state" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Unfiltered Ailerons state</field>
+
          <field name = "gamma_state" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Unfiltered flight path angle</field>
+         <field name = "airspeed_state" type="int16" unit="1e2_m_s" alt_unit="m_s"  alt_unit_coef="0.01">Unfiltered airspeed measured from airspeed sensor</field>
+         <field name = "beta_state" type="int16" unit="1e2_m_s" alt_unit="deg"  alt_unit_coef="0.01">Sideslip angle</field>
+
          <field name = "p_state" type="int16" unit="1e1_deg_s" alt_unit="deg_s"  alt_unit_coef="0.1">Body rate around x axes unfiltered</field>
          <field name = "q_state" type="int16" unit="1e1_deg_s" alt_unit="deg_s"  alt_unit_coef="0.1">Body rate around y axes unfiltered</field>
          <field name = "r_state" type="int16" unit="1e1_deg_s" alt_unit="deg_s"  alt_unit_coef="0.1">Body rate around z axes unfiltered</field>
-         <field name = "airspeed_state" type="int16" unit="1e2_m_s" alt_unit="m_s"  alt_unit_coef="0.01">Unfiltered airspeed measured from airspeed sensor</field>
-         <field name = "beta_state" type="int16" unit="1e2_m_s" alt_unit="deg"  alt_unit_coef="0.01">Sideslip angle measured with the vain</field>
+
+          <field name = "p_dot_filt" type="int16" unit="1e1_deg_s2" alt_unit="deg_s2"  alt_unit_coef="0.1">Unfiltered measurement of p_dot</field>
+          <field name = "q_dot_filt" type="int16" unit="1e1_deg_s2" alt_unit="deg_s2"  alt_unit_coef="0.1">Unfiltered measurement of q_dot</field>
+          <field name = "r_dot_filt" type="int16" unit="1e1_deg_s2" alt_unit="deg_s2"  alt_unit_coef="0.1">Unfiltered measurement of r_dot</field>
+
+          <field name = "psi_dot_cmd" type="int16" unit="1e2_deg_s" alt_unit="deg_s"  alt_unit_coef="0.01">Commanded psi_dot</field>
+
          <field name = "approach_bool" type="int16">Approach boolean to set the takeoff and landing configuration</field>
          <field name = "lidar_alt_corrected" type="int16" unit="cm" alt_unit="m"  alt_unit_coef="0.01">Attitude-corrected lidar altitude</field>
+
          <field name = "pseudo_control_ax" type="int16" unit="1e2_m_s2" alt_unit="m_s2"  alt_unit_coef="0.01">Computed pseudo-control for the x-control acceleration</field>
          <field name = "pseudo_control_ay" type="int16" unit="1e2_m_s2" alt_unit="m_s2"  alt_unit_coef="0.01">Computed pseudo-control for the y-control acceleration</field>
          <field name = "pseudo_control_az" type="int16" unit="1e2_m_s2" alt_unit="m_s2"  alt_unit_coef="0.01">Computed pseudo-control for the z-control acceleration</field>
@@ -1965,9 +1975,13 @@
 
          <field name = "desired_theta_value" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Desired theta value</field>
          <field name = "desired_phi_value" type="int16" unit="1e2_deg" alt_unit="deg"  alt_unit_coef="0.01">Desired phi value</field>
+
          <field name = "NED_UAV_pos_x" type="float">NED current pos_x</field>
          <field name = "NED_UAV_pos_y" type="float">NED current pos_y</field>
-         <field name = "NED_UAV_pos_z" type="float">NED current pos_z</field>         
+         <field name = "NED_UAV_pos_z" type="float">NED current pos_z</field>     
+
+         <field name = "failure_mode" type="uint8">Specify which rotor has failed, zero means all rotors healthy</field> 
+
          <field name = "rolling_msg_out" type="float">Rolling message out content</field>
          <field name = "rolling_msg_out_id" type="uint8">Rolling message out id</field>
      </message>
@@ -1979,28 +1993,44 @@
          <field name = "tilt_azimuth_cmds_deg" type="float[4]">Command for azimuth tilt [deg]</field>
          <field name = "theta_cmd_deg" type="float">Command for desired theta value [deg]</field>
          <field name = "phi_cmd_deg" type="float">Command for desired phi value [deg]</field>
-         <field name = "theta_dot_cmd_deg" type="float">Command for desired theta value [deg/s]</field>
-         <field name = "phi_dot_cmd_deg" type="float">Command for desired phi value [deg/s]</field>
          <field name = "ailerons_cmd_deg" type="float">Command for ailerons [deg]</field>
+
          <field name = "missed_packets" type="uint32">Missed packets on serial communication</field>
          <field name = "message_frequency" type="uint16">Refresh rate of the incoming messages from companion computer</field>
 
-         <field name = "n_iteration" type="uint16">Number of iterations of the optimizer</field>
-         <field name = "n_evaluation" type="uint16">Number of function evaluation of the optimizer</field>
-
-         <field name = "elapsed_time_us" type="uint16">Elapsed time for the determination of the optimal solution</field>
-         <field name = "exit_flag_optimizer" type="int16">Exit flag of the optimization run. Negative value means a failure of the optimization process</field>
-         <field name = "residuals_array" type="float[6]">Residual acceleration of the computed optimised solution [m/s^2 or rad/s^2]</field>
-
-         <field name = "modeled_acc_array" type="float[6]">Filtered modeled accelerations [m/s^2 or rad/s^2]</field>
-
          <field name = "lidar_altitude_m" type="float">Altitude read by the lidar in meters</field>
          <field name = "lidar_strength" type="int16">Signal strength of the lidar</field>
+
          <field name = "timestamp_aruco_detection" type="float">Timestamp of last aruco marker detection</field>
          <field name = "NED_aruco_pos_x" type="float">NED pos_x last aruco marker detection</field>
          <field name = "NED_aruco_pos_y" type="float">NED pos_y last aruco marker detection</field>
-         <field name = "NED_aruco_pos_z" type="float">NED pos_z last aruco marker detection</field>  
-         <field name = "sys_status" type="int8"></field>         
+         <field name = "NED_aruco_pos_z" type="float">NED pos_z last aruco marker detection</field> 
+         <field name = "aruco_relative_phi" type="float">Relative phi angle of the aruco marker [deg]</field> 
+         <field name = "aruco_relative_theta" type="float">Relative theta angle of the aruco marker [deg]</field>
+         <field name = "aruco_relative_psi" type="float">Relative psi angle of the aruco marker [deg]</field>
+         <field name = "aruco_system_status" type="int8">System status</field>
+
+          <field name = "timestamp_sixdof_detection" type="float">Timestamp of last sixdof detection</field>
+          <field name = "NED_sixdof_pos_x" type="float">NED pos_x last sixdof detection</field>
+          <field name = "NED_sixdof_pos_y" type="float">NED pos_y last sixdof detection</field>
+          <field name = "NED_sixdof_pos_z" type="float">NED pos_z last sixdof detection</field>
+          <field name = "sixdof_relative_phi" type="float">Relative phi angle of the sixdof [deg]</field>
+          <field name = "sixdof_relative_theta" type="float">Relative theta angle of the sixdof [deg]</field>
+          <field name = "sixdof_relative_psi" type="float">Relative psi angle of the sixdof [deg]</field>
+          <field name = "sixdof_system_status" type="int8">System status</field>
+
+         <field name = "modeled_acc_array" type="float[6]">Filtered modeled accelerations [m/s^2 or rad/s^2]</field>
+         <field name = "residuals_array" type="float[6]">Residual acceleration of the computed optimised inner loop solution [m/s^2 or rad/s^2]</field>
+
+         <field name = "n_iteration_outer" type="uint16">Number of iterations of the optimizer</field>
+         <field name = "n_evaluation_outer" type="uint16">Number of function evaluation of the optimizer</field>
+         <field name = "elapsed_time_us_outer" type="uint16">Elapsed time for the determination of the outer loop optimal solution</field>
+         <field name = "exit_flag_optimizer_outer" type="int16">Exit flag of the outer loop optimization run</field>
+         <field name = "n_iteration_inner" type="uint16">Number of iterations of the optimizer</field>
+         <field name = "n_evaluation_inner" type="uint16">Number of function evaluation of the optimizer</field>
+         <field name = "elapsed_time_us_inner" type="uint16">Elapsed time for the determination of the inner loop optimal solution</field>
+         <field name = "exit_flag_optimizer_inner" type="int16">Exit flag of the inner loop optimization run</field>
+
          <field name = "rolling_msg_in" type="float">Rolling message in content</field>
          <field name = "rolling_msg_in_id" type="uint8">Rolling message in id</field>
      </message>
