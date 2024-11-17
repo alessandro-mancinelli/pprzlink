@@ -2063,14 +2063,8 @@
          <field name = "motor_3_err_code" type="int16" >Motor 3 error code</field>
          <field name = "motor_4_err_code" type="int16" >Motor 4 error code</field>
 
-         <field name = "rotor_1_az_update_time_us" type="int16" >Rotor 1 azimuth servo update time in microseconds</field>
-         <field name = "rotor_1_el_update_time_us" type="int16" >Rotor 1 elevation servo update time in microseconds</field>
-         <field name = "rotor_2_az_update_time_us" type="int16" >Rotor 2 azimuth servo update time in microseconds</field>
-         <field name = "rotor_2_el_update_time_us" type="int16" >Rotor 2 elevation servo update time in microseconds</field>
-         <field name = "rotor_3_az_update_time_us" type="int16" >Rotor 3 azimuth servo update time in microseconds</field>
-         <field name = "rotor_3_el_update_time_us" type="int16" >Rotor 3 elevation servo update time in microseconds</field>
-         <field name = "rotor_4_az_update_time_us" type="int16" >Rotor 4 azimuth servo update time in microseconds</field>
-         <field name = "rotor_4_el_update_time_us" type="int16" >Rotor 4 elevation servo update time in microseconds</field>
+         <field name = "rotors_az_update_time_us" type="int16[4]" >Rotor 1,2,3,4 azimuth servo update time in microseconds</field>
+         <field name = "rotors_el_update_time_us" type="int16[4]" >Rotor 1,2,3,4 elevation servo update time in microseconds</field>
          <field name = "servo_9_update_time_us" type="int16" >Servo 9 update time in microseconds</field>
          <field name = "servo_10_update_time_us" type="int16" >Servo 10 update time in microseconds</field>
          
