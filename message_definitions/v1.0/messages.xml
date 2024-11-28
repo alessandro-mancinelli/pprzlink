@@ -1763,26 +1763,21 @@
     </message>
 
     <message name="SHIP_INFO_MSG_GROUND" id="192" >
+      <field name="packet_timestamp" type="float" >Time of packet seconds</field>
       <field name="phi" type="float" unit="deg">Roll</field>
       <field name="theta" type="float" unit="deg">Pitch</field>
-      <field name="psi" type="float" unit="deg">Yaw</field>
-      <field name="heading" type="float" unit="deg*1e5">Heading</field>
-      <field name="course" type="float" unit="rad*1e5">Heading</field>
-      <field name="phi_dot" type="float" unit="deg/s">roll rate</field>
-      <field name="theta_dot" type="float" unit="deg/s">pitch rate</field>
-      <field name="psi_dot" type="float" unit="deg/s">yaw rate</field>      
-      <field name="x" type="float" unit="m">position_x</field>
-      <field name="y" type="float" unit="m">position_y</field>
-      <field name="z" type="float" unit="m">position_z</field>
-      <field name="lat_ship" type="float" unit="m">lat_ship</field>
-      <field name="long_ship" type="float" unit="m">long_ship</field>
-      <field name="alt_ship" type="float" unit="m">alt_ship</field>      
+      <field name="psi" type="float" unit="deg">Yaw</field>   
+      <field name="phi_dot" type="float" unit="deg/s">Roll derivative</field>
+      <field name="theta_dot" type="float" unit="deg/s">Pitch derivative</field>
+      <field name="lat" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+      <field name="lon" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+      <field name="alt" type="int32" unit="mm" alt_unit="m" alt_unit_coef="0.001">Height above Mean Sea Level (geoid)</field>       
       <field name="x_dot" type="float" unit="m/s">speed_x</field>
       <field name="y_dot" type="float" unit="m/s">speed_y</field>
-      <field name="z_dot" type="float" unit="m/s">speed_z</field>
-      <field name="x_ddot" type="float" unit="m/s^2">acc_x</field>      
-      <field name="y_ddot" type="float" unit="m/s^2">acc_y</field>      
-      <field name="z_ddot" type="float" unit="m/s^2">acc_z</field>                        
+      <field name="z_dot" type="float" unit="m/s">speed_z</field>   
+      <field name="speed_x_control_coeffs" type="float[10]" >coeffs for speed x control ship prediction</field>
+      <field name="speed_y_control_coeffs" type="float[10]" >coeffs for speed y control ship prediction</field>
+      <field name="speed_z_control_coeffs" type="float[10]" >coeffs for speed z control ship prediction</field>                  
     </message>
 
     <message name="AHRS_LKF" id="193">
@@ -3184,24 +3179,25 @@
     
     <message name="SHIP_INFO_MSG" id="190" link="forwarded">
       <field name="ac_id" type="uint8"/>
+      <field name="packet_timestamp" type="float" >Time of packet seconds</field>
       <field name="phi" type="float" unit="deg">Roll</field>
       <field name="theta" type="float" unit="deg">Pitch</field>
-      <field name="psi" type="float" unit="deg">Yaw</field>
-      <field name="phi_dot" type="float" unit="deg/s">roll rate</field>
-      <field name="theta_dot" type="float" unit="deg/s">pitch rate</field>
-      <field name="psi_dot" type="float" unit="deg/s">yaw rate</field>      
-      <field name="x" type="float" unit="m">position_x</field>
-      <field name="y" type="float" unit="m">position_y</field>
-      <field name="z" type="float" unit="m">position_z</field>
-      <field name="lat_ship" type="float" unit="m">lat_ship</field>
-      <field name="long_ship" type="float" unit="m">long_ship</field>
-      <field name="alt_ship" type="float" unit="m">alt_ship</field>         
+      <field name="psi" type="float" unit="deg">Yaw</field>  
+      <field name="phi_dot" type="float" unit="deg/s">Roll derivative</field>
+      <field name="theta_dot" type="float" unit="deg/s">Pitch derivative</field>
+      <field name="lat" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+      <field name="lon" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
+      <field name="alt" type="int32" unit="mm" alt_unit="m">Height above Mean Sea Level (geoid)</field>       
       <field name="x_dot" type="float" unit="m/s">speed_x</field>
       <field name="y_dot" type="float" unit="m/s">speed_y</field>
-      <field name="z_dot" type="float" unit="m/s">speed_z</field>
-      <field name="x_ddot" type="float" unit="m/s^2">acc_x</field>      
-      <field name="y_ddot" type="float" unit="m/s^2">acc_y</field>      
-      <field name="z_ddot" type="float" unit="m/s^2">acc_z</field>                        
+      <field name="z_dot" type="float" unit="m/s">speed_z</field>                     
+    </message>
+
+    <message name="SHIP_PREDICTION_MSG" id="191" link="forwarded">
+      <field name="ac_id" type="uint8"/>
+      <field name="speed_x_control_coeffs" type="float[10]" >coeffs for speed x control ship prediction</field>
+      <field name="speed_y_control_coeffs" type="float[10]" >coeffs for speed y control ship prediction</field>
+      <field name="speed_z_control_coeffs" type="float[10]" >coeffs for speed z control ship prediction</field>                   
     </message>
 
   </msg_class>
