@@ -1780,6 +1780,28 @@
       <field name="speed_z_control_coeffs" type="float[10]" >coeffs for speed z control ship prediction</field>                  
     </message>
 
+
+    <message name="NAV_APPROACH_SHIP_MSG" id="194" >
+      <field name="A_err_control_rf" type="float[3]" >Acceleration increment</field>
+      <field name="A_target_control" type="float[3]" ></field>
+      <field name="V_target_control" type="float[3]" ></field>
+      <field name="expected_landing_time_relative" type="float"></field>
+      <field name="optimal_coeffs_x" type="float[6]" >optimal_coeffs_path_x</field>
+      <field name="optimal_coeffs_y" type="float[6]" >optimal_coeffs_path_y</field>
+      <field name="optimal_coeffs_z" type="float[6]" >optimal_coeffs_path_z</field>  
+      <field name="exitflag_approach_path" type="float" ></field>
+      <field name="V_OOB" type="float[6]" >V_Out_Of_Bounds</field> 
+      <field name="A_OOB" type="float[6]" >A_Out_Of_Bounds</field> 
+      <field name="UAV_to_SHIP_dist_NED" type="float[3]" ></field> 
+      <field name="Desired_phi_rad" type="float" ></field>
+      <field name="Desired_theta_rad" type="float" ></field>
+      <field name="UAV_to_SHIP_azimuth_angle_rad" type="float" ></field>
+      <field name="UAV_to_SHIP_elevation_angle_rad" type="float" ></field>
+      <field name="delta_psi" type="float" ></field>
+      <field name="psi_UAV_to_ship" type="float" ></field>
+    </message>
+
+
     <message name="AHRS_LKF" id="193">
       <field name="phi"   type="float" unit="rad"   alt_unit="deg"   alt_unit_coef="57.29578" />
       <field name="theta" type="float" unit="rad"   alt_unit="deg"   alt_unit_coef="57.29578" />
@@ -1799,7 +1821,6 @@
       <field name="mz"    type="float" />
     </message>
 
-    <!-- 194 is free -->
     <!-- 195 is free -->
     
     <message name="AIRSPEED_WIND_ESTIMATOR_EKF" id="196">
