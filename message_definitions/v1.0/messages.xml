@@ -1868,12 +1868,13 @@
       <field name="psi" type="float" unit="deg">Yaw</field>   
       <field name="phi_dot" type="float" unit="deg/s">Roll derivative</field>
       <field name="theta_dot" type="float" unit="deg/s">Pitch derivative</field>
+      <field name="psi_dot" type="float" unit="deg/s">Yaw derivative</field>
       <field name="lat" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
       <field name="lon" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
       <field name="alt" type="int32" unit="mm" alt_unit="m" alt_unit_coef="0.001">Height above Mean Sea Level (geoid)</field>       
-      <field name="x_dot" type="float" unit="m/s">speed_x</field>
-      <field name="y_dot" type="float" unit="m/s">speed_y</field>
-      <field name="z_dot" type="float" unit="m/s">speed_z</field>   
+      <field name="x_dot" type="float" unit="m/s">speed_x control rf</field>
+      <field name="y_dot" type="float" unit="m/s">speed_y control rf</field>
+      <field name="z_dot" type="float" unit="m/s">speed_z control rf</field>   
       <field name="speed_x_control_coeffs" type="float[10]" >coeffs for speed x control ship prediction</field>
       <field name="speed_y_control_coeffs" type="float[10]" >coeffs for speed y control ship prediction</field>
       <field name="speed_z_control_coeffs" type="float[10]" >coeffs for speed z control ship prediction</field>                  
@@ -3286,6 +3287,7 @@
       <field name="psi" type="float" unit="deg">Yaw</field>  
       <field name="phi_dot" type="float" unit="deg/s">Roll derivative</field>
       <field name="theta_dot" type="float" unit="deg/s">Pitch derivative</field>
+      <field name="psi_dot" type="float" unit="deg/s">Yaw derivative</field>
       <field name="lat" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
       <field name="lon" type="int32" unit="1e7deg" alt_unit="deg" alt_unit_coef="0.0000001"/>
       <field name="alt" type="int32" unit="mm" alt_unit="m">Height above Mean Sea Level (geoid)</field>       
