@@ -3554,15 +3554,21 @@
       <field name="width" type="float" unit="pixels">Width of the detected peak in pixels, also useful for indicating distance</field>
     </message>
 
-    <message name="IMCU_FALCON_RELPOS" id="119">
-      <description>Position of a single beacon relative to the sensor (Frame cable front X: forward, Z: left, Y: down)</description>
-      <field name="id" type="uint16"></field>
-      <field name="pos" type="float[3]" unit="m">Position (x, y, z) in meters of the beacon with respect to the sensor</field>
+    <message name="IMCU_FALCON_RELBEACON" id="119">
+      <description>Position of a single beacon with respect to the sensor (Frame cable front X: forward, Z: left, Y: down)</description>
+      <field name="id" type="uint16_t">Unique id of the beacon</field>
+      <field name="pos" type="float[3]" unit="m">Position (x, y, z) in meters of the beacon with respect to the sensor body frame</field>
     </message>
 
     <message name="IMCU_FALCON_CMD" id="120">
       <description>Command to the Falcon sensor</description>
       <field name="mode" type="uint8" values="OFF|SIXDOF|RELANGLE|RELPOS"/>
+    </message>
+
+    <message name="IMCU_OPENCV_ARUCO" id="121">
+      <description>Position of a single aruco marker in the camera frame </description>
+      <field name="id" type="uint16_t">Unique id of the aruco marker</field>
+      <field name="pos" type="float[3]" unit="m">Position (x, y, z) in meters of the aruco marker with respect to the camera body frame</field>
     </message>
 
   </msg_class>
